@@ -130,6 +130,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIControl\ConnectionInfo.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -162,8 +163,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ConnectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\SingleController.cs" />
+    <Compile Include="DataFactory\Factory.cs" />
+    <Compile Include="DataFactory\SingleData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,6 +261,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CDTDatabase\CDTDatabase.csproj">
+      <Project>{f66f1e38-3d80-46e5-9584-edab42b0d2fd}</Project>
+      <Name>CDTDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CDTLib\CDTLib.csproj">
       <Project>{cf282973-8899-4c28-8286-71155cbe9c3a}</Project>
       <Name>CDTLib</Name>

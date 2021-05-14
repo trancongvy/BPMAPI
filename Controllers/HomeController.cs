@@ -10,8 +10,6 @@ namespace BPMAPI.Controllers
     {
         public ActionResult Index()
         {
-            // Connection x = new Connection();
-          //  ViewBag.Title = Connection.GetConnection("CBASGD200");
 
             return View();
         }
