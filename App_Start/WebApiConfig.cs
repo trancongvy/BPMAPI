@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BPMAPI
 {
@@ -12,7 +13,11 @@ namespace BPMAPI
             // Web API configuration and services
 
             // Web API routes
+
+            config.EnableCors();
             config.MapHttpAttributeRoutes();
+            
+            
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

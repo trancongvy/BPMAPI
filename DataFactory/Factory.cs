@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BPMAPI.APIControl;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,14 +12,52 @@ namespace BPMAPI.DataFactory
     public static class Factory
     {
         
-        public static List<SingleData> LstSingle = new List<SingleData>();
-        public static SingleData findSingle(string tableName, string StructDB)
+        public static ConcurrentDictionary<string, SingleData> LstSingle = new ConcurrentDictionary<string, SingleData>();
+        public static ConcurrentDictionary<string, MTDTData> LstMtDt = new ConcurrentDictionary<string, MTDTData>();
+
+        public static SingleData findSingle(string tableName)
         {
-            foreach (SingleData c in LstSingle)
+            if (tableName == null) return null;
+            foreach (SingleData c in LstSingle.Values)
+            {
+                if (c == null) continue;
+                if (c.TableName.ToLower() == tableName.ToLower())
+                    return c;
+            }
+            return null;
+
+        }
+        public static SingleData findSingle(int sysTableID)
+        {
+
+            foreach (SingleData c in LstSingle.Values)
             {
 
-                if (c.TableName == tableName &&  c.StructDB==StructDB)
-                    return c;                
+                if (c.sysTableID == sysTableID.ToString())
+                    return c;
+            }
+            return null;
+
+        }
+        public static MTDTData findMTDT(string tableName)
+        {
+            MTDTData data;
+            if (LstMtDt.ContainsKey(tableName))
+            {
+                LstMtDt.TryGetValue(tableName, out data);
+                return data;
+            }
+            else
+                return null;
+
+        }
+        public static MTDTData findMTDT(int sysTableID)
+        {
+           
+            foreach (MTDTData c in LstMtDt.Values)
+            {
+                if (c.sysTableID == sysTableID.ToString())
+                    return c;
             }
             return null;
 
